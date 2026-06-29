@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: churnstream-mlops
+Version: 0.1.0
+Summary: Real-time churn prediction MLOps project
+Requires-Python: >=3.10
