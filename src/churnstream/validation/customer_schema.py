@@ -37,9 +37,19 @@ class CustomerDatasetSchema(pa.DataFrameModel):
         nullable=False,
     )
 
+    Tenure: Series[int] = pa.Field(
+        ge=0,
+        nullable=False,
+    )
+
     Balance: Series[float] = pa.Field(
         ge=0,
         nullable=False
+    )
+
+    NumOfProducts: Series[int] = pa.Field(
+        ge=0,
+        nullable=False,
     )
 
     HasCrCard: Series[int] = pa.Field(
