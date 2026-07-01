@@ -1,0 +1,34 @@
+{
+  "target": "Exited",
+  "identifiers": [
+    "RowNumber",
+    "CustomerId",
+    "Surname"
+  ],
+  "numeric": [
+    "CreditScore",
+    "Age",
+    "Tenure",
+    "Balance",
+    "NumOfProducts",
+    "HasCrCard",
+    "IsActiveMember",
+    "EstimatedSalary"
+  ],
+  "categorical": [
+    "Geography",
+    "Gender"
+  ],
+  "model_features": [
+    "CreditScore",
+    "Age",
+    "Tenure",
+    "Balance",
+    "NumOfProducts",
+    "HasCrCard",
+    "IsActiveMember",
+    "EstimatedSalary",
+    "Geography",
+    "Gender"
+  ]
+}

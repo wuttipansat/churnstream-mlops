@@ -1,0 +1,62 @@
+{
+  "target": "Exited",
+  "identifiers": [
+    "RowNumber",
+    "CustomerId",
+    "Surname"
+  ],
+  "raw_numeric": [
+    "CreditScore",
+    "Age",
+    "Tenure",
+    "Balance",
+    "NumOfProducts",
+    "HasCrCard",
+    "IsActiveMember",
+    "EstimatedSalary"
+  ],
+  "raw_categorical": [
+    "Geography",
+    "Gender"
+  ],
+  "engineered_numeric": [
+    "BalanceSalaryRatio",
+    "BalancePerProduct",
+    "TenureAgeRatio",
+    "IsZeroBalance",
+    "HasMultipleProducts"
+  ],
+  "engineered_categorical": [
+    "AgeGroup"
+  ],
+  "input_features": [
+    "CreditScore",
+    "Age",
+    "Tenure",
+    "Balance",
+    "NumOfProducts",
+    "HasCrCard",
+    "IsActiveMember",
+    "EstimatedSalary",
+    "Geography",
+    "Gender"
+  ],
+  "model_features": [
+    "CreditScore",
+    "Age",
+    "Tenure",
+    "Balance",
+    "NumOfProducts",
+    "HasCrCard",
+    "IsActiveMember",
+    "EstimatedSalary",
+    "BalanceSalaryRatio",
+    "BalancePerProduct",
+    "TenureAgeRatio",
+    "IsZeroBalance",
+    "HasMultipleProducts",
+    "Geography",
+    "Gender",
+    "AgeGroup"
+  ]
+}

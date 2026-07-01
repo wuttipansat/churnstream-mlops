@@ -1,0 +1,41 @@
+artifact_path: mlflow-artifacts:/1/models/m-c084d2bb2bf146c59620025b53d1d992/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.11
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+    skops_trusted_types: null
+is_signature_from_type_hint: false
+mlflow_version: 3.14.0
+model_id: m-c084d2bb2bf146c59620025b53d1d992
+model_size_bytes: 5732
+model_uuid: m-c084d2bb2bf146c59620025b53d1d992
+prompts: null
+run_id: df0c9244aad047468f86031d998ab0a3
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "CreditScore", "required": true}, {"type":
+    "double", "name": "Age", "required": true}, {"type": "double", "name": "Tenure",
+    "required": true}, {"type": "double", "name": "Balance", "required": true}, {"type":
+    "double", "name": "NumOfProducts", "required": true}, {"type": "double", "name":
+    "HasCrCard", "required": true}, {"type": "double", "name": "IsActiveMember", "required":
+    true}, {"type": "double", "name": "EstimatedSalary", "required": true}, {"type":
+    "string", "name": "Geography", "required": true}, {"type": "string", "name": "Gender",
+    "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-07-01 04:26:05.457222'

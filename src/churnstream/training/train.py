@@ -29,6 +29,7 @@ from churnstream.features.customer_features import (
     build_features,
     build_target
 )
+from churnstream.features.feature_engineering import CustomerFeatureEngineer
 from churnstream.validation.customer_schema import validate_customer_dataset
 
 RANDOM_STATE = 42
@@ -84,12 +85,12 @@ def build_model_pipeline() -> Pipeline:
             (
                 "numeric",
                 numeric_pipeline,
-                list(CUSTOMER_FEATURES.numeric),
+                list(CUSTOMER_FEATURES.model_numeric),
             ),
             (
                 "categorical",
                 categorical_pipeline,
-                list(CUSTOMER_FEATURES.categorical),
+                list(CUSTOMER_FEATURES.model_categorical),
             ),
         ],
         remainder='drop'
@@ -103,6 +104,10 @@ def build_model_pipeline() -> Pipeline:
 
     return Pipeline(
         steps=[
+            (
+                "feature_engineering",
+                CustomerFeatureEngineer(),
+            ),
             (
                 "preprocessor",
                 preprocessor
@@ -224,13 +229,28 @@ def train_model() -> None:
                 "model_type": "LogisticRegression",
                 "random_state": RANDOM_STATE,
                 "test_size": TEST_SIZE,
-                "max_iter": 1000,
+                "max_iter": 1_000,
                 "class_weight": "balanced",
                 "threshold": (
                     settings.churn_threshold
                 ),
                 "training_rows": len(X_train),
                 "testing_rows": len(X_test),
+                "feature_engineering_version": "v1",
+                "raw_feature_count": len(
+                    CUSTOMER_FEATURES.input_features
+                ),
+                "engineered_feature_count": (
+                    len(
+                        CUSTOMER_FEATURES.engineered_categorical
+                    )
+                    + len(
+                        CUSTOMER_FEATURES.engineered_numeric
+                    )
+                ),
+                "total_model_feature_count": len(
+                    CUSTOMER_FEATURES.model_features
+                )
             }
         )
 
@@ -242,11 +262,20 @@ def train_model() -> None:
                 "identifiers": list(
                     CUSTOMER_FEATURES.identifiers
                 ),
-                "numeric": list(
+                "raw_numeric": list(
                     CUSTOMER_FEATURES.numeric
                 ),
-                "categorical": list(
+                "raw_categorical": list(
                     CUSTOMER_FEATURES.categorical
+                ),
+                "engineered_numeric": list(
+                    CUSTOMER_FEATURES.engineered_numeric
+                ),
+                "engineered_categorical": list(
+                    CUSTOMER_FEATURES.engineered_categorical
+                ),
+                "input_features": list(
+                    CUSTOMER_FEATURES.input_features
                 ),
                 "model_features": list(
                     CUSTOMER_FEATURES.model_features
@@ -255,7 +284,7 @@ def train_model() -> None:
             "metadata/customer_features.json"
         )
 
-        input_example = X_train.head(5)
+        input_example = X_train.head(5).copy()
 
         signature = infer_signature(
             input_example,
@@ -270,6 +299,7 @@ def train_model() -> None:
             registered_model_name=(
                 settings.mlflow_model_name
             ),
+            serialization_format="cloudpickle"
         )
 
         print("\n=== Metrics ===")
