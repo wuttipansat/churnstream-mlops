@@ -37,7 +37,7 @@ def main() -> None:
     output_path = Path(f"data/raw/customers_{timestamp}.parquet")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
-    dataframe.to_parquet(output_path, index=False)
+    validated_dataframe.to_parquet(output_path, index=False)
     
     print(f"Saved {len(dataframe)} customers to {output_path}")
 
