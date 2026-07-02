@@ -10,6 +10,8 @@ __pycache__/
 mlruns/
 artifacts/
 models/
+mlflow.db
+mlartifacts/
 
 data/raw/*.parquet
 data/processed/*
