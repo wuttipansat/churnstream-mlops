@@ -25,7 +25,9 @@ def main() -> None:
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-    mlflow.sklearn.save_model(sk_model=model, path=str(OUTPUT_PATH))
+    mlflow.sklearn.save_model(sk_model=model, path=str(OUTPUT_PATH), serialization_format=(
+            mlflow.sklearn.SERIALIZATION_FORMAT_CLOUDPICKLE
+        ),)
 
     print(f"Model exported to: {OUTPUT_PATH.resolve()}")
 

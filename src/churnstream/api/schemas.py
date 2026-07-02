@@ -22,15 +22,8 @@ class PredictionResponse(BaseModel):
     customer_id: int
     churn_prediction: int
     churn_probability: float
-    model_name: str
-    model_version: str
-    model_alias: str
     threshold: float
-    replayed: bool = False
 
 class HealthResponse(BaseModel):
     status: str
     model_loaded: bool
-    model_name: str
-    model_version: str
-    model_alias: str

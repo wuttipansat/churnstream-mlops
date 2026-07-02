@@ -28,14 +28,10 @@ app = FastAPI(
 
 @app.get("/health", response_model=HealthResponse)
 def health(request: Request) -> HealthResponse:
-    service: ModelService = request.app.state.model_service
 
     return HealthResponse(
         status="ok",
-        model_loaded=True,
-        model_name=service.model_name,
-        model_version = service.model_version,
-        model_alias=service.model_alias,
+        model_loaded=hasattr(request.app.state, "model_service"),
     )
 
 @app.post("/predict", response_model=PredictionResponse)
@@ -53,8 +49,5 @@ def predict(payload: PredictionRequest, request: Request) -> PredictionResponse:
         customer_id=payload.customer_id,
         churn_prediction=result.prediction,
         churn_probability=result.probability,
-        model_name=service.model_name,
-        model_version=service.model_version,
-        model_alias=service.model_alias,
         threshold=service.threshold,
     )

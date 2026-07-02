@@ -1,5 +1,5 @@
 from functools import lru_cache
-
+from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     mlflow_model_name: str = "churn_model"
     mlflow_model_alias: str = "champion"
 
+    local_model_path: Path = Path("models/churn_model")
     churn_threshold: float = 0.5
     log_level: str = "INFO"
 
