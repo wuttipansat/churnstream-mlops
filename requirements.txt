@@ -9,5 +9,6 @@ pandera
 mlflow
 fastapi
 uvicorn[standard]
-scikit-learn
+scikit-learn==1.7.2
 joblib
+httpx

@@ -3,7 +3,7 @@ from functools import lru_cache
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
-    mongodb_uri: str
+    mongodb_uri: str | None = None
     mongodb_database: str = "churnstream"
     mongodb_customers_collection: str = "customers"
     mongodb_predictions_collection: str = "churn_predictions"
